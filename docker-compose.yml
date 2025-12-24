@@ -1,0 +1,28 @@
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: websul-redis
+
+  backend:
+    build:
+      context: .
+    container_name: websul-backend
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      SPRING_DATASOURCE_URL: ${AZURE_DB_URL}
+      SPRING_DATASOURCE_USERNAME: ${AZURE_DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${AZURE_DB_PASS}
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
+    depends_on:
+      - redis
+
+volumes:
+  mysql_data:

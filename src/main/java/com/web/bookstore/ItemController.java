@@ -12,6 +12,11 @@ public class ItemController {
 
     private final ItemRepository itemRepository;
 
+    @GetMapping("/ping")
+    public String ping() {
+        return "OK";
+    }
+
     @GetMapping("/")
     String index() {
         return "index.html";
