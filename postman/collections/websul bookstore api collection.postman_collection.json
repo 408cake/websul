@@ -1,0 +1,877 @@
+{
+  "info": {
+    "_postman_id": "af9792e4-4bf9-4575-a6ae-ae323206838a",
+    "name": "websul bookstore api collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "저자(admin)",
+      "item": [
+        {
+          "name": "저자 삭제",
+          "id": "0a8153a9-1469-4742-9158-45ac34139e9a",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/admin/authors/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "admin",
+                "authors",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "저자 생성",
+          "id": "fa01596d-192b-4ec2-b4c3-2e46eaa9cc72",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"J.K. Rowling\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/admin/authors",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "authors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "저자 조회",
+          "id": "ff2fcd34-a44f-4523-86d4-8343267e5849",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"George Orwell\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/admin/authors/2",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "authors",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "저자 수정",
+          "id": "8605c8e4-b0e5-424d-83b8-3a68afe1664b",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"장세훈 (Updated)\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/admin/authors/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "admin",
+                "authors",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "b94a9996-0d57-4661-9003-c2377caa1875"
+    },
+    {
+      "name": "책(admin)",
+      "item": [
+        {
+          "name": "책 등록",
+          "id": "9d64c96c-7dff-4f14-b88c-1ac9dd33ac7f",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"sellerId\": 1,\r\n  \"title\": \"스프링 부트 완벽 가이드\",\r\n  \"isbn\": \"9781111111112\",\r\n  \"publisher\": \"한빛미디어\",\r\n  \"summary\": \"스프링 부트를 처음부터 끝까지 설명한 책\",\r\n  \"price\": 35000,\r\n  \"publicationDate\": \"2024-01-10\",\r\n  \"inventory\": 50\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/admin/books",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "admin",
+                "books"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "책 수정",
+          "id": "0538c438-b40f-4797-b87e-a66291b2d820",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"sellerId\": 1,\r\n  \"title\": \"웹툴 프로젝트 테스트북 2 (수정)\",\r\n  \"isbn\": \"9781234567891\",\r\n  \"publisher\": \"한빛미디어\",\r\n  \"summary\": \"수정된 설명\",\r\n  \"price\": 36000,\r\n  \"publicationDate\": \"2024-01-10\",\r\n  \"inventory\": 40\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/admin/books/5",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "admin",
+                "books",
+                "5"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "책 삭제",
+          "id": "d26bf20a-0570-45b7-b36f-dca6a29e81ef",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"sellerId\": 1,\r\n  \"title\": \"웹툴 프로젝트 테스트북 2 (수정)\",\r\n  \"isbn\": \"9781234567891\",\r\n  \"publisher\": \"한빛미디어\",\r\n  \"summary\": \"수정된 설명\",\r\n  \"price\": 36000,\r\n  \"publicationDate\": \"2024-01-10\",\r\n  \"inventory\": 40\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/admin/books/14",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "admin",
+                "books",
+                "14"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "책 조회",
+          "id": "3e506cf4-8ff6-4715-be6b-31d1607f20c4",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/admin/books/15",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "admin",
+                "books",
+                "15"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "764048c6-ec2d-4888-b8b7-3cd6bdee8e49"
+    },
+    {
+      "name": "카테고리(admin)",
+      "item": [
+        {
+          "name": "카테고리 생성",
+          "id": "ae149e8e-f919-4fe3-8f29-17f11649d1bc",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"소설\",\r\n  \"parentId\": null\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/admin/categories",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "admin",
+                "categories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "카테고리 수정",
+          "id": "945030e8-fd90-4748-b156-65f7b4231255",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"프랑스 소설\",\r\n  \"parentId\": null\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/admin/categories/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "admin",
+                "categories",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "카테고리 삭제",
+          "id": "065df316-082e-41ab-903a-9e3aee362d45",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/admin/categories/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "admin",
+                "categories",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "ccbda5d3-124c-4f22-ae23-27ff22cd9d94"
+    },
+    {
+      "name": "리뷰",
+      "item": [
+        {
+          "name": "리뷰 등록",
+          "id": "7707238a-802f-47b6-91be-088ce86ca7e5",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"bookId\": 4,\r\n  \"userId\": 1,\r\n  \"rating\": 5,\r\n  \"content\": \"정말 좋은 책입니다.\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/admin/reviews",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "admin",
+                "reviews"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "리뷰 수정",
+          "id": "41ea6f57-644c-4639-83df-7419a92c6ed1",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"bookId\": 4,\r\n  \"userId\": 10,\r\n  \"rating\": 4,\r\n  \"content\": \"다시 보니 조금 아쉽네요.\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/admin/reviews/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "admin",
+                "reviews",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "리뷰 삭제",
+          "id": "4410c910-059c-4cd5-846c-46fdc09aafcd",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"bookId\": 4,\r\n  \"userId\": 1,\r\n  \"rating\": 5,\r\n  \"content\": \"정말 좋은 책입니다.\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/admin/reviews/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "admin",
+                "reviews",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "리뷰 조회",
+          "id": "003d449f-4411-4ab1-8791-1262b5aeb99e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"bookId\": 4,\r\n  \"userId\": 1,\r\n  \"rating\": 5,\r\n  \"content\": \"정말 좋은 책입니다.\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/admin/reviews/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "admin",
+                "reviews",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "06064b22-b2ce-4550-9e85-f312b24ccf97"
+    },
+    {
+      "name": "publicauthor",
+      "item": [
+        {
+          "name": "작가 조회",
+          "id": "6443b084-b596-47ac-9bd5-3ec3eeabff1c",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/public/authors?page=0&size=10&sort=name,ASC&keyword=kim",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "public",
+                "authors"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "sort",
+                  "value": "name,ASC"
+                },
+                {
+                  "key": "keyword",
+                  "value": "kim"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "d5893d4c-fac3-4869-a385-a99e7e91afa0"
+    },
+    {
+      "name": "publicBookController",
+      "item": [
+        {
+          "name": "책 검색(오름차순)",
+          "id": "2fdd80d2-9b34-4710-900a-df60d0e7c944",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/public/books?page=0&size=10&sort=price,ASC",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "public",
+                "books"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "sort",
+                  "value": "price,ASC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "책조회 실패",
+          "id": "a220cdf1-b3c6-4a95-bdee-d0ea17484421",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/public/books/999",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "public",
+                "books",
+                "999"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "5ad14e16-fd53-4c47-86b3-b3c98f7855ab"
+    },
+    {
+      "name": "카테고리 조회",
+      "item": [
+        {
+          "name": "카테고리조회",
+          "id": "b4129d9c-6b05-4d02-8034-358d1d740af2",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/public/categories?page=0&size=10&sort=name,ASC",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "public",
+                "categories"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "sort",
+                  "value": "name,ASC"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "a825d484-c582-428f-beef-ca106e364a84"
+    },
+    {
+      "name": "리뷰",
+      "item": [
+        {
+          "name": "리뷰 조회",
+          "id": "ae674772-ef1d-4b77-9522-2dea06958550",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/public/reviews/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "public",
+                "reviews",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "리뷰 작성",
+          "id": "625290be-0cf1-4195-ade7-8206bf58a6ba",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"bookId\": 6,\r\n  \"userId\": 2,\r\n  \"rating\": 5,\r\n  \"content\": \"정말 재미있는 책이에요!\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/public/reviews",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "public",
+                "reviews"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "리뷰 수정",
+          "id": "1d5f2ba0-bbf4-4ca7-bb4f-6b19e8cad2a0",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"bookId\": 6,\r\n  \"userId\": 3,\r\n  \"rating\": 4,\r\n  \"content\": \"다시 보니 조금 아쉬운 부분도 있네요.\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/public/reviews/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "public",
+                "reviews",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "리뷰 삭제",
+          "id": "04241b85-ee7f-4fd7-a5e8-d431526dbb80",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/public/reviews/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "public",
+                "reviews",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "e67ed98a-da3f-4091-a966-1aa6c9a90bbf"
+    }
+  ],
+  "variable": [
+    {
+      "id": "2df6bfe0-3c18-475a-9b6c-49c44d4676aa",
+      "key": "baseURL",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}
