@@ -1,8 +1,8 @@
 package com.web.bookstore.api;
 
-import com.web.bookstore.Item;
-import com.web.bookstore.ItemRepository;
 import com.web.bookstore.api.dto.BookSummary;
+import com.web.bookstore.book.Book;
+import com.web.bookstore.book.BookRepository;
 import com.web.bookstore.common.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/public/books")
 public class PublicBookController {
 
-    private final ItemRepository itemRepository;
+    private final BookRepository bookRepository;
 
-    public PublicBookController(ItemRepository itemRepository) {
-        this.itemRepository = itemRepository;
+    public PublicBookController(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
     }
 
     @GetMapping
@@ -32,20 +32,21 @@ public class PublicBookController {
         String[] s = sort.split(",");
         String sortField = s[0];
         Sort.Direction dir = (s.length > 1 && "ASC".equalsIgnoreCase(s[1])) ? Sort.Direction.ASC : Sort.Direction.DESC;
+        if ("book_id".equalsIgnoreCase(sortField)) sortField = "id";
 
         PageRequest pr = PageRequest.of(page, size, Sort.by(dir, sortField));
-        Page<Item> result = itemRepository.findAll(pr);
+        Page<Book> result = bookRepository.findAll(pr);
 
-        Page<BookSummary> mapped = result.map(i -> new BookSummary(i.getId(), i.getTitle(), i.getPrice()));
+        Page<BookSummary> mapped = result.map(b -> new BookSummary(b.getId(), b.getTitle(), b.getPrice()));
 
         return ApiResponse.ok(PageResponse.from(mapped));
     }
 
     @GetMapping("/{id}")
     public ApiResponse<BookSummary> detail(@PathVariable Long id) {
-        Item item = itemRepository.findById(id)
-            .orElseThrow(() -> new ApiException(ErrorCode.RESOURCE_NOT_FOUND, "book_id=" + id));
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new ApiException(ErrorCode.RESOURCE_NOT_FOUND, "book_id=" + id));
 
-        return ApiResponse.ok(new BookSummary(item.getId(), item.getTitle(), item.getPrice()));
+        return ApiResponse.ok(new BookSummary(book.getId(), book.getTitle(), book.getPrice()));
     }
 }

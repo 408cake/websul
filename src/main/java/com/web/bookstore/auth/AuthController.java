@@ -2,6 +2,7 @@ package com.web.bookstore.auth;
 
 import com.web.bookstore.auth.dto.AuthResponse;
 import com.web.bookstore.auth.dto.LoginRequest;
+import com.web.bookstore.api.dto.FirebaseLoginRequest;
 import com.web.bookstore.auth.dto.RefreshRequest;
 import com.web.bookstore.auth.dto.SignupRequest;
 import com.web.bookstore.common.ApiResponse;
@@ -37,5 +38,10 @@ public class AuthController {
     public ApiResponse<Void> logout(@Valid @RequestBody RefreshRequest req) {
         authService.logout(req);
         return ApiResponse.ok(null);
+    }
+
+    @PostMapping("/firebase")
+    public ApiResponse<AuthResponse> firebase(@Valid @RequestBody FirebaseLoginRequest request) {
+        return ApiResponse.ok(authService.firebaseLogin(request));
     }
 }

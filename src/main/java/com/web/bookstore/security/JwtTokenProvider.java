@@ -3,6 +3,7 @@ package com.web.bookstore.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -15,19 +16,29 @@ import java.util.UUID;
 @Component
 public class JwtTokenProvider {
 
-    private final SecretKey key;
-    private final long accessTtlSeconds;
-    private final long refreshTtlSeconds;
+    @Value("${jwt.secret}")
+    private String secret;
 
-    public JwtTokenProvider(
-            @Value("${jwt.secret}") String secret,
-            @Value("${jwt.access-ttl-seconds}") long accessTtlSeconds,
-            @Value("${jwt.refresh-ttl-seconds}") long refreshTtlSeconds
-    ) {
+    @Value("${jwt.access-ttl-seconds}")
+    private long accessTtlSeconds;
+
+    @Value("${jwt.refresh-ttl-seconds}")
+    private long refreshTtlSeconds;
+
+    private SecretKey key;
+
+    @PostConstruct
+    public void init() {
+        if (secret == null || secret.isBlank()) {
+            throw new IllegalStateException("JWT secret is missing");
+        }
+
         this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
-        this.accessTtlSeconds = accessTtlSeconds;
-        this.refreshTtlSeconds = refreshTtlSeconds;
     }
+
+    /* =========================
+       Access Token
+       ========================= */
 
     public String createAccessToken(Long userId, String email, String role) {
         Instant now = Instant.now();
@@ -43,6 +54,10 @@ public class JwtTokenProvider {
                 .compact();
     }
 
+    /* =========================
+       Refresh Token
+       ========================= */
+
     public String createRefreshToken(Long userId) {
         Instant now = Instant.now();
         Instant exp = now.plusSeconds(refreshTtlSeconds);
@@ -57,6 +72,10 @@ public class JwtTokenProvider {
                 .signWith(key)
                 .compact();
     }
+
+    /* =========================
+       Token Parsing
+       ========================= */
 
     public Claims parse(String token) {
         return Jwts.parser()

@@ -23,29 +23,31 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
-            throws ServletException, IOException {
+        throws ServletException, IOException {
 
-        String auth = req.getHeader("Authorization");
-        if (auth != null && auth.startsWith("Bearer ")) {
-            String token = auth.substring(7);
-
+        String authHeader = req.getHeader("Authorization");
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            String token = authHeader.substring(7);
             try {
-                Claims c = jwtTokenProvider.parse(token);
-                String userId = c.getSubject();
-                String role = String.valueOf(c.get("role"));
+                var claims = jwtTokenProvider.parse(token);
 
-                UsernamePasswordAuthenticationToken authentication =
-                        new UsernamePasswordAuthenticationToken(
-                                userId,
-                                null,
-                                List.of(new SimpleGrantedAuthority("ROLE_" + role))
-                        );
+                String userId = String.valueOf(claims.getSubject());
+                String role = String.valueOf(claims.get("role"));
 
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+                String authority = role != null && role.startsWith("ROLE_")
+                        ? role
+                        : "ROLE_" + role;
+
+                var authentication = new org.springframework.security.authentication.UsernamePasswordAuthenticationToken(
+                        userId,
+                        null,
+                        java.util.List.of(new org.springframework.security.core.authority.SimpleGrantedAuthority(authority))
+                );
+
+                org.springframework.security.core.context.SecurityContextHolder.getContext().setAuthentication(authentication);
             } catch (Exception ignored) {
             }
         }
-
         chain.doFilter(req, res);
     }
-}
+}  

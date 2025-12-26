@@ -29,8 +29,8 @@ datasource는 application.properties에 하드코딩하지 않고 env로만 주�
 DB_HOST=your-azure-mysql-host
 DB_PORT=3306
 DB_NAME=test <- 추후 변경 필요 
-DB_USER=bookstoreadmin
-DB_PASSWORD=Admin123
+DB_USER={YOUR_DB_USERNAME}
+DB_PASSWORD={YOUR_DB_PASSWORD}
 
 REDIS_HOST=redis
 REDIS_PORT=6379

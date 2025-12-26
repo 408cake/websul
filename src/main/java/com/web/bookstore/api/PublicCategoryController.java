@@ -49,29 +49,4 @@ public class PublicCategoryController {
                         .orElseThrow(() -> new ApiException(ErrorCode.RESOURCE_NOT_FOUND))
         );
     }
-
-    @PostMapping
-    public ApiResponse<?> create(@RequestBody @Valid CategoryRequest req) {
-        Category c = new Category();
-        c.setName(req.name());
-        c.setParentId(req.parentId());
-        return ApiResponse.ok(categoryRepository.save(c));
-    }
-
-    @PutMapping("/{id}")
-    public ApiResponse<?> update(@PathVariable Long id, @RequestBody @Valid CategoryRequest req) {
-        Category c = categoryRepository.findById(id)
-                .orElseThrow(() -> new ApiException(ErrorCode.RESOURCE_NOT_FOUND));
-        c.setName(req.name());
-        c.setParentId(req.parentId());
-        return ApiResponse.ok(categoryRepository.save(c));
-    }
-
-    @DeleteMapping("/{id}")
-    public ApiResponse<?> delete(@PathVariable Long id) {
-        Category c = categoryRepository.findById(id)
-                .orElseThrow(() -> new ApiException(ErrorCode.RESOURCE_NOT_FOUND));
-        categoryRepository.delete(c);
-        return ApiResponse.ok(null);
-    }
 }

@@ -3,13 +3,13 @@ package com.web.bookstore.review;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "review")
+@Table(name = "reviews")
 public class Review {
 
     @Id
@@ -23,28 +23,18 @@ public class Review {
     @Column(name = "user_id", nullable = false)
     private Long userId;
 
-    @Column(name = "rating", nullable = false)
+    @Column(name = "rating", columnDefinition = "TINYINT", nullable = false)
     private Integer rating;
 
-    @Column(name = "comment", nullable = false, length = 1000)
-    private String comment;
-
-    @Column(name = "content", nullable = false, length = 255)
+    @Column(columnDefinition = "TEXT")
     private String content;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", columnDefinition = "TIMESTAMP", insertable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updated_at")
+    @Column(name = "updated_at", columnDefinition = "TIMESTAMP", insertable = false, updatable = false)
     private LocalDateTime updatedAt;
 
-    @PrePersist
-    public void prePersist() {
-        if (createdAt == null) createdAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
+    @Column(name = "deleted_at", columnDefinition = "TIMESTAMP")
+    private LocalDateTime deletedAt;
 }
